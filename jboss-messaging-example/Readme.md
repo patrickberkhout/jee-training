@@ -1,5 +1,9 @@
-# JMS client example
-	mvn compile exec:java -DVMHOST=eap7-9f00.rhpds.opentlc.com
+# JMS server example
+	docker build -t local/wildfly-full --no-cache .
+	docker run -it --rm -p 8181:8080 -p 9991:9990 -p 61616:61616 local/wildfly-full
+	mvn clean wildfly:deploy
+
+Check out deployment in  <http://localhost:9991/console/App.html#home> login `admin/jboss@dm1n`
 	
 	
 # Learnings
@@ -13,3 +17,15 @@
 #### Queues can be defined using
 
 	/opt/jboss/wildfly/bin/jboss-cli.sh --connect --file=/opt/jboss/artemis-config.cli
+	
+#### Connecting to a Artemis server in a docker container needs extra configuration
+
+Not yet working ...
+<https://access.redhat.com/solutions/2675391>
+
+and
+
+<https://developer.jboss.org/thread/266416>
+
+
+

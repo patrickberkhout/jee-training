@@ -25,6 +25,9 @@ public class SimpleJMSClient {
 		environment.put(Context.PROVIDER_URL, "http-remoting://127.0.0.1:8181");
 		InitialContext initialContext = new InitialContext(environment);
 
+		System.out.println("USER:" + userName);
+		System.out.println("PASSWORD:" + password);
+
 		ConnectionFactory cf = (ConnectionFactory) initialContext.lookup("jms/RemoteConnectionFactory");
 		contextObj = cf.createContext(userName, password);
 		exampleQueue = (Queue) initialContext.lookup("jms/exampleQueue");
