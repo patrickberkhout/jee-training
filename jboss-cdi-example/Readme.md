@@ -5,6 +5,8 @@
 	mvn clean wildfly:deploy
 
 Check out deployment in  <http://localhost:9991/console/App.html#home> login `admin/jboss@dm1n`
+
+Webpage <http://localhost:8181/jboss-cdi-example/index.xhtml>
 	
 	
 # Learnings

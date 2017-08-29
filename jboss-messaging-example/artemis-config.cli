@@ -1,0 +1,7 @@
+batch
+
+# Define a new JMS Queue called: exampleQueue
+# Ensure that it is durable and is defined with a JNDI path
+/subsystem=messaging-activemq/server=default/jms-queue=exampleQueue/:add(entries=["queue/exampleQueue","java:jboss/exported/jms/exampleQueue"],durable=true)
+
+run-batch
