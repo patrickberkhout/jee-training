@@ -1,0 +1,15 @@
+p {
+    text-align: center;
+    color: #00BFFF;
+} 
+.title {
+	color: #1E90FF;
+}
+
+.footer {
+	color: #1E90FF;
+}
+
+.galleryItemName {
+	font-size: 2em;
+}

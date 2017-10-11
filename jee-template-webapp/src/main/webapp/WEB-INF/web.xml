@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+<!-- 	<security-constraint>
+		<display-name>Gallery</display-name>
+		<web-resource-collection>
+			<web-resource-name>gallery</web-resource-name>
+			<url-pattern>/gallery/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+ -->
+	<security-constraint>
+		<display-name>Site</display-name>
+		<web-resource-collection>
+			<web-resource-name>Admin</web-resource-name>
+			<url-pattern>/site/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>user</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<!-- <login-config> <auth-method>FORM</auth-method> <form-login-config> 
+		<form-login-page>/login.html</form-login-page> <form-error-page>/error.html</form-error-page> 
+		</form-login-config> </login-config> -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+</web-app>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:body>
+
+	<ui:composition template="template/page.xhtml">
+		<ui:define name="content">
+			<div class="galleryItemName">Form</div>
+			<h:form>
+				<h:outputLabel value="String attribute" for="stringAttribute" />
+				<h:inputText value="#{formModel.stringAttribute}"
+					id="stringAttribute" />
+
+				<h:outputLabel value="Single character attribute"
+					for="singleCharacterAttribute" />
+				<h:inputText value="#{formModel.singleCharacterAttribute}"
+					id="singleCharacterAttribute" />
+
+				<h:outputLabel value="Integer attribute" for="integerAttribute" />
+				<h:inputText value="#{formModel.integerAttribute}"
+					id="integerAttribute" />
+
+				<h:outputLabel value="Date attribute" for="dateAttribute" />
+
+				<h:inputText value="#{formModel.dateAttribute}" id="dateAttribute">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+
+				<h:outputLabel value="Radio buttons" for="radioButtonAttribute" />
+				<h:selectOneRadio id="radioButtonAttribute"
+					value="#{formModel.radioButtonAttribute}">
+					<f:selectItem itemLabel="value1" itemValue="value1" />
+					<f:selectItem itemLabel="value2" itemValue="value2" />
+				</h:selectOneRadio>
+				<h:outputText value="#{formModel.radioButtonAttribute}"
+					id="radioButtonAttributeOutput" />
+
+
+				<h:outputLabel value="BooleanAttribute" for="booleanAttribute" />
+				<h:selectBooleanCheckbox id="booleanAttribute"
+					value="#{formModel.booleanAttribute}" />
+
+
+				<h:dataTable value="#{formModel.listAttribute}" var="listItem"
+					styleClass="listItem" rowClasses="even, odd">
+					<h:column>
+						<f:facet name="header">id</f:facet>
+						<h:outputText value="#{listItem.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">name</f:facet>
+						<h:outputText value="#{listItem.name}">
+						</h:outputText>
+					</h:column>
+				</h:dataTable>
+
+				<h:commandButton value="Submit and return to this page"
+					action="gallery" />
+				<h:commandButton
+					value="Submit, verify single character attribute and return to this page"
+					action="#{formModel.verifySingleCharacterAttribute}" />
+			</h:form>
+			<p>
+				<h:outputText value="#{formModel.display}"
+					rendered="#{not empty formModel.display}" />
+			</p>
+			<div class="galleryItemName">Session scoped managed bean</div>
+			<h:form>
+				<h:outputLabel value="Integer attribute" for="integerAttribute" />
+				<h:outputText value="#{sessionFormModel.integerAttribute}"
+					id="integerAttribute" />
+				<h:commandButton
+					value="Submit, increase by one and return to this page"
+					action="#{sessionFormModel.increaseByOne}" />
+			</h:form>
+			<div class="galleryItemName">Conversation scoped managed bean</div>
+			<h:form>
+				<h:outputLabel value="Integer attribute" for="integerAttribute" />
+				<h:outputText value="#{conversationFormModel.integerAttribute}"
+					id="integerAttribute" />
+				<h:outputLabel value="IsConversationTransient attribute"
+					for="isConversationTransient" />
+				<h:outputText
+					value="#{conversationFormModel.isConversationTransient}"
+					id="isConversationTransient" />
+
+				<h:commandButton
+					value="Submit, increase by one and return to this page"
+					action="#{conversationFormModel.increaseByOne}"
+					rendered="#{not conversationFormModel.isConversationTransient}" />
+				<h:commandButton
+					value="Submit, start conversation return to this page"
+					action="#{conversationFormModel.startConversation}" />
+				<h:commandButton
+					value="Submit, end conversation and return to this page"
+					action="#{conversationFormModel.endConversation}" />
+			</h:form>
+			<div class="galleryItemName">JSF HTML tags</div>
+			<h:form>
+				<h:outputLabel value="String attribute" for="stringAttribute" />
+				<h:outputText value="#{tagsFormModel.stringAttribute}"
+					id="stringAttribute" />
+
+				<h:outputLabel value="String attribute" for="stringAttributeInput" />
+				<h:inputText value="#{tagsFormModel.stringAttribute}"
+					id="stringAttributeInput" />
+
+				<h:outputLabel
+					value="String attribute - render when attribute is 'hallo'"
+					for="stringAttributeHello" />
+				<h:outputText value="#{tagsFormModel.stringAttribute}"
+					rendered="#{tagsFormModel.stringAttribute eq 'hallo'}"
+					id="stringAttributeHello" />
+
+				<c:if test="#{tagsFormModel.stringAttribute eq 'hallo'}">
+				___#{tagsFormModel.stringAttribute}___
+				</c:if>
+
+				<ui:fragment
+					rendered="#{not empty tagsFormModel.collectionAttribute}">
+				___#{tagsFormModel.collectionAttribute[0]}___
+				</ui:fragment>
+				User__#{requestScope['user-agent']}__
+				<h:outputText value="#{request.getHeader('user-agent')}" />
+
+				<h:commandButton value="Submit, end return to this page"
+					action="gallery" />
+			</h:form>
+
+			<div class="galleryItemName">Producer</div>
+			<h:form>
+				<h:outputLabel value="detail attribute" for="detailStringAttribute" />
+				<h:outputText value="#{detail.stringAttribute}"
+					id="detailStringAttribute" />
+
+				<h:outputLabel value="detail attribute"
+					for="producerFormDetailStringAttribute" />
+				<h:outputText value="#{producerFormModel.detail.stringAttribute}"
+					id="producerFormDetailStringAttribute" />
+
+				<h:outputLabel value="detail attribute input"
+					for="detailStringAttributeInput" />
+				<h:inputText value="#{detail.stringAttribute}"
+					id="detailStringAttributeInput" />
+
+				<h:commandButton value="Submit, end return to this page"
+					action="gallery" />
+			</h:form>
+
+			<div class="galleryItemName">Converters</div>
+			<h:outputText value="&euro;12345">
+				<f:convertNumber currencySymbol="&euro;" type="currency" />
+			</h:outputText>
+			<h:outputText value="$12345">
+				<f:convertNumber currencySymbol="$" type="currency" />
+			</h:outputText>
+
+			<div class="galleryItemName">Fragments</div>
+			<h:form>
+				<ui:fragment rendered="#{fragmentFormModel.val eq 0}">VAL 0</ui:fragment>
+				<ui:fragment rendered="#{fragmentFormModel.val eq 1}">VAL 1</ui:fragment>
+				<h:inputText value="#{fragmentFormModel.val}"
+					id="fragmentFormModelval" />
+				<h:commandButton action="gallery" value="Submit val" />
+			</h:form>
+
+
+
+			<div class="galleryItemName">Converters and messages</div>
+			<h:form>
+				<h:inputText value="#{converterFormModel.integerField}"
+					id="converterFormModelintegerField"
+					converterId="javax.faces.Integer"
+					converterMessage="You must enter a number in this field" />
+				<h:commandButton action="gallery" value="Submit val" />
+			</h:form>
+			<h:message for="converterFormModelintegerField" showDetail="true"
+				showSummary="false" styleClass="error" />
+
+			<h:outputText value="#{converterFormModel.dateField}">
+				<f:convertDateTime dateStyle="full" locale="nl" timeStyle="long"
+					type="both" />
+			</h:outputText>
+			<h:outputText value="#{converterFormModel.currencyField}">
+				<f:convertNumber currencySymbol="$" type="currency" />
+			</h:outputText>
+
+			<div class="galleryItemName">Validators and custom messages</div>
+
+			<h:form>
+				<h:inputText value="#{validatorFormModel.longField}"
+					id="validatorFormModelLongField"
+					validator="#{validatorFormModel.validateNonZero}" />
+				<h:message for="validatorFormModelLongField" showDetail="true"
+					showSummary="false" styleClass="error" />
+
+				<h:inputText value="#{validatorFormModel.longField}"
+					id="validatorFormModelLongField2">
+					<f:validateLongRange minimum="-100" maximum="120"
+						validatorMessage="Hello1" />
+				</h:inputText>
+
+				<h:message for="validatorFormModelLongField2" showDetail="true"
+					showSummary="false" styleClass="error" />
+				<h:inputText value="#{validatorFormModel.stringField}"
+					id="validatorFormModelStringField">
+				</h:inputText>
+				<h:message for="validatorFormModelStringField" showDetail="true"
+					showSummary="false" styleClass="error" />
+
+				<h:commandButton action="gallery" value="Submit" />
+			</h:form>
+
+			<div class="galleryItemName">All messages</div>
+			<p>
+				All without id
+				<h:messages globalOnly="true" styleClass="error" showSummary="true"
+					showDetail="false" />
+			</p>
+			<p>
+				All with or without id
+				<h:messages globalOnly="false" styleClass="error" showSummary="true"
+					showDetail="false" />
+			</p>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>
