@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+
+	<ui:composition template="/template/page.xhtml">
+		<ui:define name="content">
+			<h2>Registrations</h2>
+			<h:dataTable value="#{registrationsModel.registrations}"
+				var="registration" styleClass="registration" rowClasses="even, odd">
+				<h:column>
+					<f:facet name="header">username</f:facet>
+					<h:outputText value="#{registration.username}">
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">nickname</f:facet>
+					<h:outputText value="#{registration.nickname}">
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">role</f:facet>
+					<h:outputText value="#{registration.role}">
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">actions</f:facet>
+					<h:form>
+						<h:commandButton value="Delete"
+							action="#{registrationsModel.delete(registration)}" />
+					</h:form>
+				</h:column>
+			</h:dataTable>
+			<h:form>
+				<h:outputLabel value="username" for="username" />
+				<h:inputText value="#{newRegistration.username}" id="username" />
+
+				<h:outputLabel value="password" for="password" />
+				<h:inputText value="#{newRegistration.password}" id="password" />
+
+				<h:outputLabel value="nickname" for="nickname" />
+				<h:inputText value="#{newRegistration.nickname}" id="nickname" />
+
+				<h:commandButton value="Submit"
+					action="#{registrationsModel.save(newRegistration)}" />
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

@@ -1,4 +1,4 @@
-package local.view.model;
+package local.view;
 
 import javax.enterprise.inject.Model;
 

@@ -1,0 +1,24 @@
+version: "3.0"
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5532:5432"
+    environment:
+      POSTGRES_DB: webapp
+      POSTGRES_USER: webapp
+      POSTGRES_PASSWORD: webapp
+    volumes:
+      - ./container/schema/:/docker-entrypoint-initdb.d/
+    
+  webapp:
+    build: .
+    ports:
+      - "8180:8080"
+      - "10090:9990"
+      
+    links:
+      - database
+#    environment:
+#      XPACK_MONITORING_ENABLED: "false"
+

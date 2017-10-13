@@ -1,0 +1,16 @@
+batch
+
+/subsystem=security/security-domain=database:add
+/subsystem=security/security-domain=database/authentication=classic:add
+/subsystem=security/security-domain=database/authentication=classic/login-module=Database:add( \
+  code=Database, \
+  flag=required, \
+  module-options=[ \
+    ("dsJndiName"=>"java:/datasources/WEBAPP_XA_DS"), \
+    ("principalsQuery"=>"select password from Registration where username=?"), \
+    ("rolesQuery"=>"select role, 'Roles' from Role ro join Registration re on ro.Registration_id = re.Registration_id where username=?") \
+  ])
+  
+run-batch
+:reload
+
