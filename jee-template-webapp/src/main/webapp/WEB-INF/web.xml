@@ -3,6 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	<servlet>
+		<servlet-name>FinanciaSOAPPService</servlet-name>
+		<servlet-class>local.webservice.financials.FinancialSOAPService</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FinanciaSOAPPService</servlet-name>
+		<url-pattern>/soap/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
@@ -21,7 +31,7 @@
 		<param-value>true</param-value>
 	</context-param>
 
-	<!--  SECURITY CONSTRAINTS -->
+	<!-- SECURITY CONSTRAINTS -->
 	<security-constraint>
 		<display-name>Gallery</display-name>
 		<web-resource-collection>
@@ -32,7 +42,7 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
+
 	<security-constraint>
 		<display-name>Admin</display-name>
 		<web-resource-collection>
@@ -43,8 +53,8 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
-	<!--  ROLES -->
+
+	<!-- ROLES -->
 	<security-role>
 		<role-name>user</role-name>
 	</security-role>
