@@ -19,6 +19,9 @@ http://localhost:8180/jee-template-webapp/admin/
 # JSF Gallery (admin/admin)
 http://localhost:8180/jee-template-webapp/gallery/
 
+# Rest interface
+<http://localhost:8180/jee-template-webapp/rest/financial/product/>
+
 # SOAP interface
 <http://localhost:8180/jee-template-webapp/soap/FinanciaSOAPPService?wsdl>
 

@@ -1,4 +1,4 @@
-package local.webservice.financials;
+package local.webservice;
 
 import java.util.ArrayList;
 import java.util.List;
