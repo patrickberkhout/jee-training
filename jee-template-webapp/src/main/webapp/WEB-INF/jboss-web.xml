@@ -4,5 +4,5 @@
 	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_7_20.xsd"
 	version="7.2">
 	<context-root>/jee-template-webapp</context-root>
-	<security-domain>other</security-domain>
+	<security-domain>database-security-domain</security-domain>
 </jboss-web>

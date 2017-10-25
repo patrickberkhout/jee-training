@@ -1,8 +1,8 @@
 batch
 
-/subsystem=security/security-domain=database:add
-/subsystem=security/security-domain=database/authentication=classic:add
-/subsystem=security/security-domain=database/authentication=classic/login-module=Database:add( \
+/subsystem=security/security-domain=database-security-domain:add
+/subsystem=security/security-domain=database-security-domain/authentication=classic:add
+/subsystem=security/security-domain=database-security-domain/authentication=classic/login-module=Database:add( \
   code=Database, \
   flag=required, \
   module-options=[ \

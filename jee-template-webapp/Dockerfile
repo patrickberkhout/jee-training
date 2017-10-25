@@ -14,6 +14,8 @@ RUN curl -o /opt/jboss/wildfly/modules/org/postgresql/main/postgresql.jar https:
 
 RUN bash run_cli_script.sh datasources.cli
 
+RUN bash run_cli_script.sh securitydomain.cli
+
 # http://stackoverflow.com/questions/20965737/
 RUN rm -rf /opt/jboss/wildfly/standalone/configuration/standalone_xml_history/current
 

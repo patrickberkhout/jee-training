@@ -2,16 +2,18 @@
 
 -- DROP SCHEMA public;
 
-\connect webapp
+\connect admin
 
---CREATE SCHEMA IF NOT EXISTS public;
+--CREATE SCHEMA IF NOT EXISTS admin;
+
+--SET search_path TO admin;
 
 CREATE TABLE Registration
 (
   Registration_ID 	character varying(36) NOT NULL,
-  Username 			character varying(999) UNIQUE NOT_NULL,
+  Username 			character varying(999) UNIQUE NOT NULL,
   Password 			character varying(36),
-  Nickname 			character varying(999) UNIQUE NOT_NULL,
+  Nickname 			character varying(999) UNIQUE NOT NULL,
   CONSTRAINT PK_Registration PRIMARY KEY (Registration_ID)
 );
 

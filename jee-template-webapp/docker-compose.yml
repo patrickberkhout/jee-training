@@ -5,9 +5,9 @@ services:
     ports:
       - "5532:5432"
     environment:
-      POSTGRES_DB: webapp
-      POSTGRES_USER: webapp
-      POSTGRES_PASSWORD: webapp
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - ./container/schema/:/docker-entrypoint-initdb.d/
     
