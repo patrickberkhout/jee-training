@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	<servlet>
 		<servlet-name>FinanciaSOAPPService</servlet-name>
-		<servlet-class>local.webservice.financials.FinancialSOAPService</servlet-class>
+		<servlet-class>local.webservice.FinancialSOAPService</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
