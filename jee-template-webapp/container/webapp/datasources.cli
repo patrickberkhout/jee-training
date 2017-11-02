@@ -7,7 +7,7 @@ driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
 
 # Create XA Data source
 /subsystem=datasources/xa-data-source=postgresXADS:add(\
-jndi-name="java:/datasources/WEBAPP_XA_DS",\
+jndi-name="java:/datasources/adminXADatasource",\
 driver-name=postgresXA,\
 user-name="postgres",\
 password="postgres",\

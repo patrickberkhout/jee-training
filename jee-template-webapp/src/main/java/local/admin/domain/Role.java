@@ -1,4 +1,4 @@
-package local.domein;
+package local.admin.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

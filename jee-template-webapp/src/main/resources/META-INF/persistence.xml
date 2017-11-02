@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="webapp" transaction-type="JTA">
+	<persistence-unit name="adminPersistenceUnit" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/datasources/WEBAPP_XA_DS</jta-data-source>
+		<jta-data-source>java:/datasources/adminXADatasource</jta-data-source>
 		<properties>
 		<property name="hibernate.dialect" 
                   value="org.hibernate.dialect.PostgreSQLDialect"/>

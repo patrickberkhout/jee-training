@@ -1,4 +1,4 @@
-package local.domain.products;
+package local.products.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

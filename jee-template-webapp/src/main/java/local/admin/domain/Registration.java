@@ -1,4 +1,4 @@
-package local.domein;
+package local.admin.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "Registration.findAll", query = "SELECT r FROM Registration r"),
+@NamedQueries({
 		@NamedQuery(name = "Registration.findByUsername", query = "SELECT r FROM Registration r WHERE r.username = :username") })
 public class Registration {
 

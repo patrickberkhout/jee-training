@@ -1,4 +1,4 @@
-package local.repository;
+package local.admin.domain;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,13 +6,11 @@ import java.util.UUID;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import local.domein.Registration;
-import local.domein.Role;
-import local.domein.dao.RegistrationDAO;
-import local.domein.dao.RoleDAO;
+import local.admin.dao.RegistrationDAO;
+import local.admin.dao.RoleDAO;
 
 @Stateless
-public class AuthenticationRepository {
+public class AdminRepository {
 
 	@Inject
 	RegistrationDAO registrationDAO;
@@ -20,12 +18,11 @@ public class AuthenticationRepository {
 	@Inject
 	RoleDAO roleDAO;
 
-	
 	public List<Registration> retrieveAllRegistrations() {
-		return registrationDAO.findAll();
+		return registrationDAO.findAll(Registration.class);
 	}
 
-	public AuthenticationRepository() {
+	public AdminRepository() {
 
 	}
 
@@ -35,11 +32,11 @@ public class AuthenticationRepository {
 	}
 
 	public void saveRegistration(Registration registration) {
-		registrationDAO.save(registration);
+		registrationDAO.create(registration);
 		Role r = new Role();
 		r.setRegistration(registration);
 		r.setRole("user");
 		r.setRoleId(UUID.randomUUID().toString());
-		roleDAO.save(r);
+		roleDAO.create(r);
 	}
 }

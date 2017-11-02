@@ -1,28 +1,41 @@
-## Deploy to local running EAP
-	mvn widlfly:deploy -DskipTests=true
+# Template application
+
+* Secured using a database security domain
+* 
 
 
-## Docker compose
 
-# Clean up and start new containers
-# You can ignore the 'Mount point not found' messages. See https://issues.jboss.org/browse/WFCORE-2301
+## Startup instructions
+Clean up and start new containers. 
+
+Note. upon startup the postgres databases will be loaded. This will take a minute.
+Note: you can ignore the 'Mount point not found' messages. See <https://issues.jboss.org/browse/WFCORE-2301>
 
 	docker-compose down
-	docker-compose up --build
+	docker-compose up -d --build
 	
-# Main user interface
+	mvn clean install wildfly:deploy -DskipTests=true
+	
+
+## Application endpoints
+### Admin site
+<http://localhost:8180/jee-template-webapp/admin/>
+
+* user: admin
+* password: admin
+
+### Public site
+
 <http://localhost:8180/jee-template-webapp/>
 
-# Admin user interface (admin/admin)
-http://localhost:8180/jee-template-webapp/admin/
 
-# JSF Gallery (admin/admin)
+### JSF Gallery (admin/admin)
 http://localhost:8180/jee-template-webapp/gallery/
 
-# Rest interface
+### Rest interface
 <http://localhost:8180/jee-template-webapp/rest/financial/product/>
 
-# SOAP interface
+### SOAP interface
 <http://localhost:8180/jee-template-webapp/soap/FinanciaSOAPPService?wsdl>
 
 		<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fin="http://local/FinancialService/">
@@ -41,7 +54,8 @@ http://localhost:8180/jee-template-webapp/gallery/
    </soap:Body>
 </soap:Envelope>
 
-# Postgres server
+## Backend endpoints
+### Postgres server
 host:localhost port:5532 login:postgres/postgres
 
 

@@ -7,7 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import local.domain.products.ProductSymbol;
+import local.products.domain.ProductSymbol;
 
 
 @Path("/financial")

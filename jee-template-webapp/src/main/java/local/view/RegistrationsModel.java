@@ -8,14 +8,14 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import local.domein.Registration;
-import local.repository.AuthenticationRepository;
+import local.admin.domain.AdminRepository;
+import local.admin.domain.Registration;
 
 @Model
 public class RegistrationsModel {
 
 	@Inject
-	private AuthenticationRepository authenticationRepository;
+	private AdminRepository authenticationRepository;
 
 	List<Registration> registrations;
 
