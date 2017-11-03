@@ -1,4 +1,4 @@
-package local.it;
+package local.example;
 
 import java.net.URL;
 

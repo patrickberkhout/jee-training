@@ -7,9 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import local.AbstractDAO;
-import local.DAO;
 import local.admin.domain.Registration;
+import local.common.AbstractDAO;
+import local.common.DAO;
 
 @Dependent
 public class RegistrationDAO extends AbstractDAO<Registration> implements DAO<Registration> {

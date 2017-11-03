@@ -72,6 +72,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.arquillian.graphene</groupId>
 			<artifactId>graphene-webdriver</artifactId>
 			<type>pom</type>
@@ -105,6 +109,25 @@
 										</versionRange>
 										<goals>
 											<goal>unpack</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-antrun-plugin
+										</artifactId>
+										<versionRange>
+											[1.7,)
+										</versionRange>
+										<goals>
+											<goal>run</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
@@ -146,6 +169,26 @@
 								</artifactItem>
 							</artifactItems>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>backup-standalone</id>
+						<phase>process-test-classes</phase>
+						<configuration>
+							<target name="backup standalone.xml">
+								<copy file="${basedir}/target/jboss-eap-6.4/standalone/configuration/standalone.xml" tofile="${basedir}/target/jboss-eap-6.4/standalone/configuration/standalone.xml.org" />
+								<copy file="${basedir}/src/test/resources/standalone.xml" tofile="${basedir}/target/jboss-eap-6.4/standalone/configuration/standalone.xml" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

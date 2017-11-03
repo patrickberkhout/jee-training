@@ -4,9 +4,9 @@ import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import local.AbstractDAO;
-import local.DAO;
 import local.admin.domain.Role;
+import local.common.AbstractDAO;
+import local.common.DAO;
 
 @Dependent
 public class RoleDAO extends AbstractDAO<Role> implements DAO<Role> {

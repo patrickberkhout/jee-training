@@ -3,17 +3,24 @@
 	xsi:schemaLocation="
         http://jboss.org/schema/arquillian
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-
+	<!-- https://docs.jboss.org/author/display/ARQ/JBoss+AS+7.0+-+Managed -->
+	<!-- https://developer.jboss.org/thread/222248  
+		webapp running on port 8180 -->
+		
 	<defaultProtocol type="Servlet 3.0" />
-	
+
 	<engine>
 		<property name="deploymentExportPath">target/deploymentExportPath/</property>
 	</engine>
-	
+
 	<container qualifier="arquillian-jbossas-managed" default="true">
 		<configuration>
 			<property name="jbossHome">target/jboss-eap-6.4</property>
+			
+			<property name="javaVmArguments">-Djboss.socket.binding.port-offset=100</property>
+			 <property name="managementPort">10099</property>
+			 
 		</configuration>
 	</container>
-	
+
 </arquillian>

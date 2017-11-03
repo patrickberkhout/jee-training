@@ -1,4 +1,4 @@
-package local;
+package local.common;
 
 import java.util.List;
 
@@ -25,16 +25,17 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 	@Override
 	public void create(T t) {
 		getEntityManager().persist(t);
-	};
+	}
 
 	@Override
 	public void read(Class<T> tClass, Object key) {
 		getEntityManager().find(tClass, key);
-	};
+	}
 
 	@Override
 	public void update(T t) {
-	};
+		getEntityManager().merge(t);
+	}
 
 	@Override
 	public void delete(T t) {

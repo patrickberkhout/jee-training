@@ -1,4 +1,4 @@
-package local;
+package local.example;
 
 import org.junit.Test;
 
