@@ -1,7 +1,9 @@
 package local.admin;
 
 import java.util.List;
+import java.util.UUID;
 
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -11,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import local.CustomAssertions;
 import local.admin.domain.AdminRepository;
 import local.admin.domain.Registration;
 
@@ -34,10 +37,24 @@ public class AdminRepositoryIT {
 	}
 
 	@Test
-	public void test1() {
-		System.out.println(repo.getClass());
+	public void testFindAll() {
 		List<Registration> registrations = repo.retrieveAllRegistrations();
 		Assert.assertEquals(4, registrations.size());
+	}
+
+	@Test
+	public void testExceptionUponSave() {
+
+		try {
+			Registration registration = new Registration();
+			registration.setRegistrationId(UUID.randomUUID().toString());
+			repo.saveRegistration(registration);
+			List<Registration> registrations = repo.retrieveAllRegistrations();
+			Assert.assertEquals(4, registrations.size());
+		} catch (EJBTransactionRolledbackException e) {
+			CustomAssertions.containsMessage("constraints.NotNull", e);
+		}
+
 	}
 
 }

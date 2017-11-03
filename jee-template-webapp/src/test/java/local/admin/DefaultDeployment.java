@@ -4,6 +4,8 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
+import local.CustomAssertions;
+
 public class DefaultDeployment {
 	
 	public static WebArchive deployment() {
@@ -12,6 +14,7 @@ public class DefaultDeployment {
 		archive.addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml");
 		archive.addAsWebInfResource("test-ds.xml", "test-ds.xml");
 		archive.addAsResource("import.sql");
+		archive.addClass(CustomAssertions.class);
 		return archive;
 	}
 }
